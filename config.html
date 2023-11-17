@@ -1,0 +1,101 @@
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-slim/tsparticles.slim.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-polygon-mask/tsparticles.plugin.polygon-mask.min.js"></script>
+
+<script>
+    async function loadParticles() {
+        await loadPolygonMaskPlugin(tsParticles);
+
+        // Setting path size to 80% parent div height
+        const particlesDiv = document.getElementById("particles-bg");
+        const divHeight = particlesDiv.clientHeight;
+        const scalar = 0.8 * divHeight / 283.5;
+
+        tsParticles.load("particles-bg", {
+            // Rendering options
+            fullScreen: {
+                enable: false
+            },
+            fpsLimit: 30,
+            
+            // Particle basic options
+            particles: {
+                number: {
+                    value: 500,
+                },
+                shape: {
+                    type: "circle"
+                },
+                size: {
+                    value: 0
+                },
+                links: {
+                    enable: true,
+                    color: "#e2e7f3",
+                    distance: 50,
+                    opacity: 0.1,
+                    width: 1
+                },
+                
+                // Particle movement options
+                move: {
+                    enable: true,
+                    speed: { min: 0.01, max: 0.3 },
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    outMode: "bounce"
+                },
+            },
+
+            // Particle interaction options
+            interactivity: {
+                detectsOn: "canvas",
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: "bubble"
+                    }
+                },
+                modes: {
+                    bubble: {
+                        distance: 150,  // Adjust for desired bubble effect
+                        duration: 2,
+                        opacity: 1,
+                        color: ["#ff4300", "#48639c"],
+                        size: 2
+                    }
+                }
+            },
+
+            // Particle polygon options
+            polygon: {
+                enable: true,
+                move: {
+                    radius: 15, // Buffer from SVG path border
+                },
+                type: "inline",
+                inline: {
+                    arrangement: "equidistant",
+                },
+                position: {
+                    x: 50,
+                    y: 50,
+                },
+                data: {
+                    path: "M141.7 141.7c0 52.5 28.5 98.3 70.9 122.8-20.8 12.1-45.1 19-70.9 19C63.5 283.5 0 220 0 141.7S63.5 0 141.7 0h141.7c-25.8 0-50 6.9-70.9 19-42.3 24.5-70.8 70.3-70.8 122.7zm283.5 0H283.5c0 52.5-28.5 98.3-70.9 122.8 20.8 12.1 45.1 19 70.9 19 78.2 0 141.7-63.5 141.7-141.8z",
+                    size: {
+                        width: 425.2,
+                        height: 283.5,
+                    }
+                },
+                scale: scalar,
+            },
+        });
+    }
+
+    // Initial load
+    loadParticles();
+
+    // Resize event listener
+    window.addEventListener('resize', loadParticles);
+</script>
