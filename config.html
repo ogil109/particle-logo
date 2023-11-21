@@ -5,16 +5,17 @@
     async function loadParticles() {
         if (window.innerWidth > 991) {
             await loadPolygonMaskPlugin(tsParticles);
-    
+
             const particlesDiv = document.getElementById("particles-bg");
             const divHeight = particlesDiv.clientHeight;
             const scalar = 0.8 * divHeight / 283.5;
-    
+
             tsParticles.load("particles-bg", {
                 fullScreen: { enable: false },
-                fpsLimit: 50,
+                fpsLimit: 30,
                 particles: {
                     number: { value: 300 },
+                    shape: { type: "circle" },
                     size: { value: 0 },
                     links: {
                         enable: true,
@@ -26,21 +27,24 @@
                     move: {
                         enable: true,
                         speed: { min: 0.01, max: 0.15 },
+                        direction: "none",
+                        random: false,
+                        straight: false,
                         outMode: "bounce"
                     }
                 },
                 interactivity: {
                     detectsOn: "canvas",
                     events: {
-                        onHover: { enable: true, mode: "bubble" }
+                        onHover: { enable: true, mode: "grab" }
                     },
                     modes: {
-                        bubble: {
-                            distance: 150,
-                            duration: 2,
-                            opacity: 1,
-                            color: ["#ff4300", "#48639c"],
-                            size: 3
+                        grab: {
+                            distance: 100,
+                            links: {
+                                color: "#e2e7f3",
+                                opacity: 0.6
+                            }
                         }
                     }
                 },
@@ -59,6 +63,11 @@
             }).then(() => {
                 revealCanvas();
             });
+        } else {
+            const canvas = document.querySelector("#particles-bg canvas");
+            if (canvas) {
+                canvas.style.visibility = 'hidden';
+            }
         }
     }
 
@@ -69,15 +78,7 @@
         }
     }
 
-    // Initial load
     loadParticles();
 
-    // Resize event listener
-    window.addEventListener('resize', () => {
-        const canvas = document.querySelector("#particles-bg canvas");
-        if (canvas) {
-            canvas.style.visibility = 'hidden';
-        }
-        loadParticles();
-    });
+    window.addEventListener('resize', loadParticles);
 </script>
