@@ -11,24 +11,20 @@
 
         tsParticles.load("particles-bg", {
             fullScreen: { enable: false },
-            fpsLimit: 30,
+            fpsLimit: 50,
             particles: {
-                number: { value: 500 },
-                shape: { type: "circle" },
+                number: { value: 300 },
                 size: { value: 0 },
                 links: {
                     enable: true,
                     color: "#e2e7f3",
                     distance: 50,
-                    opacity: 0.1,
+                    opacity: 0.4,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: { min: 0.01, max: 0.3 },
-                    direction: "none",
-                    random: false,
-                    straight: false,
+                    speed: { min: 0.01, max: 0.15 },
                     outMode: "bounce"
                 }
             },
