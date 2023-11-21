@@ -36,15 +36,15 @@
                 interactivity: {
                     detectsOn: "canvas",
                     events: {
-                        onHover: { enable: true, mode: "grab" }
+                        onHover: { enable: true, mode: "bubble" }
                     },
                     modes: {
-                        grab: {
-                            distance: 100,
-                            links: {
-                                color: "#e2e7f3",
-                                opacity: 0.6
-                            }
+                        bubble: {
+                            distance: 400,
+                            duration: 2,
+                            opacity: 1,
+                            color: ["#ff4300", "#48639c"],
+                            size: 3
                         }
                     }
                 },
